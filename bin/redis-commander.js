@@ -10,6 +10,7 @@ var redisConnections = [];
 redisConnections.getLast = myUtils.getLast;
 
 console.log(JSON.stringify(process.env));
+var VCAP_SERVICES = JSON.parse(process.env.VCAP_SERVICES);
 
 var args = optimist
   .alias('h', 'help')
@@ -17,7 +18,7 @@ var args = optimist
   .options('redis-port', {
     string: true,
     describe: 'The port to find redis on.',
-    default: process.env.VCAP_SERVICES[process.env.REDIS][0]['credentials']['port']
+    default: VCAP_SERVICES[process.env.REDIS][0]['credentials']['port']
   })
   .options('sentinel-port', {
     string: true,
@@ -26,7 +27,7 @@ var args = optimist
   .options('redis-host', {
     string: true,
     describe: 'The host to find redis on.',
-    default: process.env.VCAP_SERVICES[process.env.REDIS][0]['credentials']['host']
+    default: VCAP_SERVICES[process.env.REDIS][0]['credentials']['host']
   })
   .options('sentinel-host', {
     string: true,
@@ -39,7 +40,7 @@ var args = optimist
   .options('redis-password', {
     string: true,
     describe: 'The redis password.',
-    default: process.env.VCAP_SERVICES[process.env.REDIS][0]['credentials']['password']
+    default: VCAP_SERVICES[process.env.REDIS][0]['credentials']['password']
   })
   .options('redis-db', {
     string: true,
