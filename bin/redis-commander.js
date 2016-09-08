@@ -9,6 +9,8 @@ var myUtils = require('../lib/util');
 var redisConnections = [];
 redisConnections.getLast = myUtils.getLast;
 
+console.log(JSON.stringify(process.env));
+
 var args = optimist
   .alias('h', 'help')
   .alias('h', '?')
