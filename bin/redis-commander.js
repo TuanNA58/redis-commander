@@ -14,7 +14,8 @@ var args = optimist
   .alias('h', '?')
   .options('redis-port', {
     string: true,
-    describe: 'The port to find redis on.'
+    describe: 'The port to find redis on.',
+    default: process.env.VCAP_SERVICES[process.env.REDIS][0]['credentials']['port']
   })
   .options('sentinel-port', {
     string: true,
@@ -22,7 +23,8 @@ var args = optimist
   })
   .options('redis-host', {
     string: true,
-    describe: 'The host to find redis on.'
+    describe: 'The host to find redis on.',
+    default: process.env.VCAP_SERVICES[process.env.REDIS][0]['credentials']['host']
   })
   .options('sentinel-host', {
     string: true,
@@ -34,7 +36,8 @@ var args = optimist
   })
   .options('redis-password', {
     string: true,
-    describe: 'The redis password.'
+    describe: 'The redis password.',
+    default: process.env.VCAP_SERVICES[process.env.REDIS][0]['credentials']['password']
   })
   .options('redis-db', {
     string: true,
@@ -60,7 +63,7 @@ var args = optimist
     alias: 'p',
     string: true,
     describe: 'The port to run the server on.',
-    default: 8081
+    default: process.env.PORT
   })
   .options('nosave', {
     alias: 'ns',
